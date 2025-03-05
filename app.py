@@ -14,18 +14,78 @@ include_lower = st.sidebar.checkbox("Include Lowercase", value=True)
 include_digits = st.sidebar.checkbox("Include Digits", value=True)
 include_special = st.sidebar.checkbox("Include Special Characters", value=True)
 
-# Custom CSS
+# Custom CSS for Dark/Light Mode and Mobile Responsiveness
 st.markdown("""
     <style>
-    body { background-color: #f8f9fa; }
-    .stApp { background-color: #f8f9fa; padding: 20px; }
-    .title { text-align: center; color: #4A90E2; font-size: 36px; font-weight: bold; }
-    .subtitle { text-align: center; color: #555; font-size: 20px; }
-    .weak { color: red; font-weight: bold; }
-    .moderate { color: orange; font-weight: bold; }
-    .strong { color: green; font-weight: bold; }
-    .container { padding: 20px; background: white; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); margin-bottom: 20px; }
-    .copy-button { background: #4A90E2; color: white; border-radius: 5px; padding: 8px 15px; cursor: pointer; border: none; }
+    :root {
+      --background-color: #f8f9fa;
+      --text-color: #333;
+      --container-bg: #ffffff;
+      --primary-color: #4A90E2;
+      --feedback-weak: red;
+      --feedback-moderate: orange;
+      --feedback-strong: green;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background-color: #121212;
+        --text-color: #f0f0f0;
+        --container-bg: #1e1e1e;
+        --primary-color: #4A90E2;
+      }
+    }
+    body {
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+    .stApp {
+      background-color: var(--background-color);
+      padding: 20px;
+    }
+    .title {
+      text-align: center;
+      color: var(--primary-color);
+      font-size: 36px;
+      font-weight: bold;
+    }
+    .subtitle {
+      text-align: center;
+      color: var(--text-color);
+      font-size: 20px;
+    }
+    .weak {
+      color: var(--feedback-weak);
+      font-weight: bold;
+    }
+    .moderate {
+      color: var(--feedback-moderate);
+      font-weight: bold;
+    }
+    .strong {
+      color: var(--feedback-strong);
+      font-weight: bold;
+    }
+    .container {
+      padding: 20px;
+      background: var(--container-bg);
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    .copy-button {
+      background: var(--primary-color);
+      color: white;
+      border-radius: 5px;
+      padding: 8px 15px;
+      cursor: pointer;
+      border: none;
+    }
+    /* Mobile Responsiveness: Stack columns on smaller screens */
+    @media (max-width: 768px) {
+      div[data-testid="stHorizontalBlock"] {
+        flex-direction: column !important;
+      }
+    }
     </style>
     """, unsafe_allow_html=True)
 
